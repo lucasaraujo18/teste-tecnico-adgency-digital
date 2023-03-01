@@ -25,4 +25,6 @@ Route::post('user/confirm-email', [App\Http\Controllers\UserController::class, '
 
 
 //Login  
+Route::get('login', [App\Http\Controllers\LoginController::class, 'login'])->name('login');
+Route::post('login/authenticate', [App\Http\Controllers\LoginController::class, 'authenticate'])->name('login.authenticate');
 Route::post('logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('logout');

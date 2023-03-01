@@ -13,6 +13,11 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function login() {
+        return view('auth.login');
+    }
+
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
@@ -23,7 +28,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
  
-            return redirect()->intended('dashboard');
+            return redirect()->intended('/');
         }
  
         return back()->withErrors([
