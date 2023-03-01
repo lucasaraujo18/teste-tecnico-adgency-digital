@@ -35,7 +35,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $response = $this->createUserService->createUser();
+        return $response;
     }
 
     /**
@@ -46,7 +47,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $response = $this->createUserService->createUser($request);
+        $response = $this->createUserService->storeUser($request);
         return $response;
     }
 

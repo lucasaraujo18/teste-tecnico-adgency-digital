@@ -2,11 +2,11 @@
 
 namespace App\Validators;
 
-use Illuminate\Validation\Validator;
+use \Validator;
 use Illuminate\Validation\Rules\Password;
 
 
-class UserValidator  {
+class UserValidators  {
 
     public function createUserValidator(array $payload)
     {

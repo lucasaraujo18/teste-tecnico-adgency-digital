@@ -10,17 +10,20 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-use App\Validators\UserValidator;
+use App\Validators\UserValidators;
 
 class CreateUserService 
 {
-    public function __construct(User $user, UserValidator $UserValidator)
+    protected $user;
+    protected $userValidator;
+
+    public function __construct(User $user, UserValidators $userValidator)
     {
         $this->user = $user;
         $this->userValidator = $userValidator;
     }
 
-    public function createUser($request)
+    public function storeUser($request)
     {
         
         $payload = [
@@ -32,10 +35,10 @@ class CreateUserService
             'privacy_terms' => $request->privacy_terms
         ];
         
-        $validation = $userValidator->createUserValidator($payload);
+        $validation = $this->userValidator->createUserValidator($payload);
 
         if ($validation->fails()) {
-            return response()->json(['errors' => $validated->errors()], 403);
+            return response()->json(['errors' => $validation->errors()], 403);
         };
         
         DB::beginTransaction();
