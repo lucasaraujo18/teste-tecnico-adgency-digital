@@ -30,7 +30,7 @@ class LoginController extends Controller
         if (Auth::attempt($user)) {
             $request->session()->regenerate();
  
-            return 'Logou';
+            return redirect()->intended('home');
         } else {
             return redirect('/');
         }

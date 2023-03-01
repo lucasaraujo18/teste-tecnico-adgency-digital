@@ -28,3 +28,6 @@ Route::post('user/confirm-email', [App\Http\Controllers\UserController::class, '
 Route::get('login', [App\Http\Controllers\LoginController::class, 'login'])->name('login');
 Route::post('login/authenticate', [App\Http\Controllers\LoginController::class, 'authenticate'])->name('login.authenticate');
 Route::post('logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
+
+// Home 
+Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
