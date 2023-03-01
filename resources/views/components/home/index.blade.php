@@ -10,6 +10,6 @@
         </button>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
-            <input id="token-logout" name="token" class="d-none" type="text">
+            <input id="token-logout" name="token" class="d-none" type="hidden">
         </form>
     </div>
