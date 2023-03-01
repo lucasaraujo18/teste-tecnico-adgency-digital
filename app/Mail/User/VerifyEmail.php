@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\User;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -35,7 +35,7 @@ class VerifyEmail extends Mailable
             ->with([
                 'user' => $this->user,
                 'email' => $this->email,
-                'route' => route('createSolicitation'),
+                'route' => route('users.index'),
             ]);
     }
 }
