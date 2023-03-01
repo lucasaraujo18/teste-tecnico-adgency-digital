@@ -19,3 +19,4 @@ Route::get('/', function () {
 
 // Route for users 
 Route::resource('users', '\App\Http\Controllers\UserController');
+Route::post('user/confirm-email', [App\Http\Controllers\UserController::class, 'verifyAccount'])->name('user.verifyCode');

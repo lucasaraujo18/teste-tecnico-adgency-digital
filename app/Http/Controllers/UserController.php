@@ -7,16 +7,19 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 use App\Services\User\CreateUserService;
+use App\Services\VerifyEmails\VerifyEmailService;
 
 class UserController extends Controller
 {
     protected $createUserService;
     protected $user;
+    protected $verifyEmailService;
 
-    public function __construct(User $user, CreateUserService $createUserService)
+    public function __construct(User $user, CreateUserService $createUserService, VerifyEmailService $verifyEmailService)
     {
         $this->user = $user;
         $this->createUserService = $createUserService;
+        $this->verifyEmailService = $verifyEmailService;
     }
     /**
      * Display a listing of the resource.
@@ -94,5 +97,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /* Method that verifyAccount with a confirmation code*/
+    public function verifyAccount(Request $request)
+    {
+        $response = $this->verifyEmailService->verifyCode($request);
+        return $response;
     }
 }
