@@ -11,15 +11,15 @@ class VerifyEmail extends Mailable
 {
     use Queueable, SerializesModels;
         public $verifyCode;
-        public $user;
+        public $userName;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($verifyCode, $user)
+    public function __construct($verifyCode, $userName)
     {
-        $this->user = $user;
+        $this->user = $userName;
         $this->verifyCode = $verifyCode;
     }
 
@@ -30,11 +30,11 @@ class VerifyEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.user.send-mail-verify')
+        return $this->markdown('emails.users.send-mail-verify')
             ->subject('Bem vindo(a)')
             ->with([
-                'user' => $this->user,
-                'email' => $this->email,
+                'user' => $this->userName,
+                'verifyCode' => $this->verifyCode,
                 'route' => route('users.index'),
             ]);
     }

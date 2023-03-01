@@ -5,8 +5,10 @@ namespace App\Services\VerifyEmails;
 use App\Models\VerifyEmails;
 use App\Models\User;
 
-
+use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+
+use App\Mail\User\VerifyEmail;
 
 class VerifyEmailService 
 { 
@@ -15,13 +17,14 @@ class VerifyEmailService
 
         $receiverEmail = $user->email;
         $verifyCode = rand(100000, 999999);
+        $userName = $user->namw;
 
-        VerifyEmail::create([
+        VerifyEmails::create([
             'email' => $receiverEmail,
             'verify_code' => $verifyCode
         ]);
 
-        Mail::to($receiverEmail)->send(new VerifyEmail($user, $verifyCode));
+        Mail::to($receiverEmail)->send(new VerifyEmail($userName, $verifyCode));
     }
 }
 

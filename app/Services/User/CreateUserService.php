@@ -12,16 +12,19 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 
 use App\Validators\UserValidators;
+use App\Services\VerifyEmails\VerifyEmailService;
 
 class CreateUserService 
 {
     protected $user;
     protected $userValidator;
+    protected $verifyEmail;
 
-    public function __construct(User $user, UserValidators $userValidator)
+    public function __construct(User $user, UserValidators $userValidator, VerifyEmailService $verifyEmail)
     {
         $this->user = $user;
         $this->userValidator = $userValidator;
+        $this->verifyEmail = $verifyEmail;
     }
 
     public function createUser()
@@ -60,6 +63,8 @@ class CreateUserService
             DB::commit();
 
             Auth::login($user); 
+
+            $this->verifyEmail->sendVerifyEmail($user->email);
 
             return view('auth.verify-email');
 
