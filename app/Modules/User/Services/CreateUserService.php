@@ -1,5 +1,5 @@
 <?php 
-namespace App\Services\User;
+namespace App\Modules\User\Services;
 
 use App\Models\User;
 

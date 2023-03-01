@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\VerifyEmails;
+namespace App\Modules\Services\VerifyEmails;
 
 use App\Models\VerifyEmails;
 use App\Models\User;
@@ -8,6 +8,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
 use Carbon\Carbon;
 
 use App\Mail\User\VerifyEmail;
@@ -20,13 +23,27 @@ class VerifyEmailService
         $receiverEmail = $user->email;
         $verifyCode = rand(100000, 999999);
         $userName = $user->name;
+        
+        DB::beginTransaction();
 
-        VerifyEmails::create([
-            'email' => $receiverEmail,
-            'verify_code' => $verifyCode
-        ]);
+        try {
+            VerifyEmails::create([
+                'email' => $receiverEmail,
+                'verify_code' => $verifyCode
+            ]);
 
-        Mail::to($receiverEmail)->send(new VerifyEmail($userName, $verifyCode));
+            DB::commit();
+
+            Mail::to($receiverEmail)->send(new VerifyEmail($userName, $verifyCode));
+
+        } catch (\Throwable $error) {
+            DB::rollback();
+
+            Log::warning("Ops:" . $errror);
+
+            return $errror;
+        }
+
     }
 
     public function verifyCode($request)
@@ -46,26 +63,33 @@ class VerifyEmailService
         $validation = Validator::make($request->all(), $rules, $messages);
 
         if ($validation->fails()) {
-            return response()->json(['errors' => $validated->errors()], 403);
+            return response()->json(['errors' => $validation->errors()], 403);
         }
 
-        $code = VerifyEmails::where('verify_code', $verifyCode)->orderBy('id', 'DESC')->first();
+        $code = VerifyEmails::where('verify_email', $verifyCode)->get();        
 
-        if ($verifyCode == $code->verify_code) {
+        DB::beginTransaction();
+
+        try {
             $code->status = 1;
             $code->save();
-
+    
             $user->email_verified = 1;
             $user->email_verified_at = Carbon::now();
             $user->save();
+    
+            DB::commit();
+            
+            return redirect()->route('home');
+            
+        } catch (\Throwable $error) {
+            DB::rollback();
 
-            return view('auth.verify-email');
-        } else {
-            return response()->json(['errors' => ['verify_code' => ['Código de verificação inválido. Preencha novamente.']]], 403);
+            Log::warning("Ops:" . $errror);
+
+            return $errror;
         }
     }
-
-    
 }
 
 ?>
