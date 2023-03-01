@@ -11,8 +11,8 @@ class UserValidators  {
     public function createUserValidator(array $payload)
     {
         $rules = [
-            'name' => ['required', 'string', 'min:5', 'max:150', 'alpha_spaces'],
-            'email' => ['required', 'string', 'mail', 'min:6', 'max:255', 'unique:users', 'verifyEmail'],
+            'name' => ['required', 'string', 'min:5', 'max:150'],
+            'email' => ['required', 'string', 'min:6', 'max:255', 'unique:users'],
             'password' => [
                 'bail', 'required',
                 Password::min(8)->mixedCase(),

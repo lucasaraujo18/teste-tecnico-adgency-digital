@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 
 use App\Validators\UserValidators;
 
@@ -23,12 +24,17 @@ class CreateUserService
         $this->userValidator = $userValidator;
     }
 
+    public function createUser()
+    {
+        return view('auth.create-user');
+    }
+
     public function storeUser($request)
     {
         
         $payload = [
             'name' => $request->name,
-            'email' => $request->name, 
+            'email' => $request->email, 
             'email_verified' => false,
             'password' => $request->password,
             'password_confirmation' => $request->password_confirmation,
@@ -40,22 +46,27 @@ class CreateUserService
         if ($validation->fails()) {
             return response()->json(['errors' => $validation->errors()], 403);
         };
+
         
         DB::beginTransaction();
-
+        
         try {
-           $data = array_splice($payload, 4);
+            unset($payload['password_confirmation']);
 
-            $user->create($data);   
+            $payload['password'] = Hash::make($payload['password']);
+
+            $user = $this->user->create($payload);   
 
             DB::commit();
 
-            return view('components.content.verify.email', compact($user));
+            return $user;
 
         } catch (\Throwable $errror) {
             DB::rollback();
 
             Log::warning("Ops:" . $errror);
+
+            return $errror;
         }
     }
 }
