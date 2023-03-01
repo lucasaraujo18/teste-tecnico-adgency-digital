@@ -59,7 +59,9 @@ class CreateUserService
 
             DB::commit();
 
-            return $user;
+            Auth::login($user); 
+
+            return view('auth.verify-email');
 
         } catch (\Throwable $errror) {
             DB::rollback();
