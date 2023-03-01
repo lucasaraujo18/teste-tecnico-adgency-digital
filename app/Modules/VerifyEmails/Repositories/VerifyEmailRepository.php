@@ -15,7 +15,7 @@ class VerifyEmailRepository {
 
     public function verifyByCode($code)
     {
-        $verify = $this->verifyEmails->where('verify_email', $verifyCode)->get();   
+        $verify = $this->verifyEmails->where('verify_code', $code)->get();   
 
         return $verify;
     }

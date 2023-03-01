@@ -6,8 +6,9 @@ use App\Models\User;
 
 use Illuminate\Http\Request;
 
-use App\Services\User\CreateUserService;
-use App\Services\VerifyEmails\VerifyEmailService;
+use App\Modules\User\Services\CreateUserService;
+use App\Modules\VerifyEmails\Services\VerifyEmailService;
+
 
 class UserController extends Controller
 {

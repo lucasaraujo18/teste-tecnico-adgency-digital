@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 
 use App\Validators\UserValidators;
-use App\Services\VerifyEmails\VerifyEmailService;
+use App\Modules\VerifyEmails\Services\VerifyEmailService;
 
 class CreateUserService 
 {

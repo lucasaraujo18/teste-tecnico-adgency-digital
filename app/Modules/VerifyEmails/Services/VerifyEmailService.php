@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Services\VerifyEmails;
+namespace App\Modules\VerifyEmails\Services;
 
 use App\Models\VerifyEmails;
 use App\Models\User;
@@ -14,11 +14,22 @@ use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 
 use App\Mail\User\VerifyEmail;
+use App\Modules\VerifyEmails\Repositories\VerifyEmailRepository;
+use App\Modules\User\Repositories\GetUserRepository;
 
 class VerifyEmailService 
 { 
+    protected $verifyEmailsRepository;
+    protected $getUserRepository;
+
+    public function __construct(VerifyEmailRepository $verifyEmailsRepository, GetUserRepository $getUserRepository)
+    {
+        $this->verifyEmailsRepository = $verifyEmailsRepository;
+        $this->getUserRepository = $getUserRepository;
+    }
+
     public function sendVerifyEmail($email) {
-        $user = User::where('email', $email)->where('email_verified', 0)->first();
+        $user = $this->getUserRepository->findUserByEmail($email);
 
         $receiverEmail = $user->email;
         $verifyCode = rand(100000, 999999);
@@ -50,7 +61,7 @@ class VerifyEmailService
     {
         $verifyCode = $request->verify_code;
 
-        $user = User::find(Auth::id());
+        $user = $this->getUserRepository->findUserById((Auth::id()));
 
         $rules = [
             'verify_code' => ['required']
@@ -66,14 +77,11 @@ class VerifyEmailService
             return response()->json(['errors' => $validation->errors()], 403);
         }
 
-        $code = VerifyEmails::where('verify_email', $verifyCode)->get();        
+        $code = $this->verifyEmailsRepository->verifyByCode($verifyCode);      
 
         DB::beginTransaction();
 
         try {
-            $code->status = 1;
-            $code->save();
-    
             $user->email_verified = 1;
             $user->email_verified_at = Carbon::now();
             $user->save();
@@ -85,9 +93,9 @@ class VerifyEmailService
         } catch (\Throwable $error) {
             DB::rollback();
 
-            Log::warning("Ops:" . $errror);
+            Log::warning("Ops:" . $error);
 
-            return $errror;
+            return $error;
         }
     }
 }
