@@ -17,7 +17,7 @@ class VerifyEmailService
 
         $receiverEmail = $user->email;
         $verifyCode = rand(100000, 999999);
-        $userName = $user->namw;
+        $userName = $user->name;
 
         VerifyEmails::create([
             'email' => $receiverEmail,
@@ -26,6 +26,8 @@ class VerifyEmailService
 
         Mail::to($receiverEmail)->send(new VerifyEmail($userName, $verifyCode));
     }
+
+    
 }
 
 ?>

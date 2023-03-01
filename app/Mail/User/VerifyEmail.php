@@ -17,9 +17,9 @@ class VerifyEmail extends Mailable
      *
      * @return void
      */
-    public function __construct($verifyCode, $userName)
+    public function __construct($userName, $verifyCode)
     {
-        $this->user = $userName;
+        $this->userName = $userName;
         $this->verifyCode = $verifyCode;
     }
 
@@ -33,9 +33,8 @@ class VerifyEmail extends Mailable
         return $this->markdown('emails.users.send-mail-verify')
             ->subject('Bem vindo(a)')
             ->with([
-                'user' => $this->userName,
+                'userName' => $this->userName,
                 'verifyCode' => $this->verifyCode,
-                'route' => route('users.index'),
             ]);
     }
 }
