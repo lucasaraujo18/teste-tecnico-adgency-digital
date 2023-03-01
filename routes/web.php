@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::route('login');
 });
 
 // Route for users 
 Route::resource('users', '\App\Http\Controllers\UserController');
 Route::post('user/confirm-email', [App\Http\Controllers\UserController::class, 'verifyAccount'])->name('user.verifyCode');
+
+
+//Login  
+Route::post('logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
