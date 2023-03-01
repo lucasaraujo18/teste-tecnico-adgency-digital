@@ -11,7 +11,7 @@
             @csrf
             <div class="form-group">
                 <label for="email">Email</label>
-                <input id="email" name="email" type="text" class="form-control" placeholder="Informe seu e-mail">
+                <input id="email" name="email" type="text" class="form-control" placeholder="Informe seu e-mail" value="{{ old('email') }}">
             </div>
             <div class="form-group">
                 <label for="password">Senha</label>
