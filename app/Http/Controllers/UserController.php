@@ -2,10 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 use Illuminate\Http\Request;
+
+use App\Services\User\CreateUserService;
 
 class UserController extends Controller
 {
+    protected $createUserService;
+    protected $user;
+
+    public function __construct(User $user, CreateUserService $createUserService)
+    {
+        $this->user = $user;
+        $this->createUserService = $createUserService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +46,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $response = $this->createUserService->createUser($request);
+        return $response;
     }
 
     /**
