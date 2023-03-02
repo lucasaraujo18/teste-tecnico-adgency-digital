@@ -2,18 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Server;
+
 use Illuminate\Http\Request;
+
+use App\Modules\Server\Services\CreateServerService;
+use App\Modules\Server\Services\ListServerService;
+
 
 class ServerController extends Controller
 {
+    protected $server;
+    protected $createServerService;
+    protected $listServerService;
+
+    public function __construct(Server $server, CreateServerService $createServerService, ListServerService $listServerService)
+    {
+        $this->server = $server;
+        $this->createServerService = $createServerService;
+        $this->listServerService = $listServerService;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $response = $this->listServerService->ListServer($request);
+        return $response;
     }
 
     /**
@@ -34,7 +51,8 @@ class ServerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $response = $this->createServerService->storeServer($request);
+        return $response;
     }
 
     /**
