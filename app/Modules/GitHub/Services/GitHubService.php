@@ -75,15 +75,15 @@ class GitHubService {
 
     public function gitUserRepo() 
     {
-        $githubApi = $this->gitHubApiRepository->gitHubApi();
-        $url = $githubApi['apiUrl'];
-        $headers = $githubApi['headers'];
+        $gitHubApi = $this->gitHubApiRepository->gitHubApi();
+        $url = $gitHubApi['apiUrl'];
+        $headers = $gitHubApi['headers'];
 
         $reponse = Http::withHeaders($headers)->get($url . '/user/repos');
 
-        $repositories = $reponse->json();
+        $gitRepositories = $reponse->json();
 
-        return $repositories;
+        return $gitRepositories;
 
     }
 
