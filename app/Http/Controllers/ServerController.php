@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use App\Modules\Server\Services\CreateServerService;
 use App\Modules\Server\Services\ListServerService;
 
-
 class ServerController extends Controller
 {
     protected $server;

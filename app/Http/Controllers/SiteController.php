@@ -2,18 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Site;
+
 use Illuminate\Http\Request;
+
+use App\Modules\Site\Services\CreateSiteService;
+use App\Modules\Site\Services\ListSiteService;
 
 class SiteController extends Controller
 {
+    protected $site;
+    protected $createSiteService;
+    protected $listSiteService;
+
+    public function __construct(Site $site, CreateSiteService $createSiteService, ListSiteService $listSiteService)
+    {
+        $this->site = $site;
+        $this->createSiteService = $createSiteService;
+        $this->listSiteService = $listSiteService;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexByServer($id)
     {
-        //
+        $response = $this->listSiteService->listSite($id);
+        return $response;
     }
 
     /**
@@ -21,9 +37,10 @@ class SiteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createByServer($id)
     {
-        //
+        $response = $this->createSiteService->createSite($id);
+        return $response;
     }
 
     /**
@@ -34,7 +51,8 @@ class SiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $response = $this->createSiteService->storeSite($id);
+        return $response;
     }
 
     /**

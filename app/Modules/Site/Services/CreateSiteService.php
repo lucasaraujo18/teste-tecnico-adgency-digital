@@ -3,8 +3,11 @@
 namespace App\Modules\Site\Services;
 
 use App\Models\Site;
-use App\Validators\SiteValidators;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
+use App\Validators\SiteValidators;
 
 class CreateSiteService {
 
@@ -17,9 +20,9 @@ class CreateSiteService {
         $this->siteValidator = $siteValidator;
     }
 
-    public function createSite() 
+    public function createSite($serverId) 
     {
-        return view('components.site.operations.create');
+        return view('components.site.create', ['server' => $serverId]);
     }
 
     public function storeSite($request) {

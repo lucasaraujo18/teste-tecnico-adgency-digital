@@ -12,11 +12,11 @@ class ListSiteService {
         $this->site = $site;
     }
 
-    public function ListSite($request)
+    public function listSite($serverId)
     {
-        $sites = $this->site->where('user_id', $userId)->get();
+        $sites = $this->site->where('server_id', $serverId)->get();
 
-        return view('components.site.index', compact('user', 'sites'));
+        return view('components.site.index', compact('user', 'sites'), ['server' => $serverId]);
     }
 
 }

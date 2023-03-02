@@ -26,6 +26,11 @@ Route::post('user/confirm-email', [App\Http\Controllers\UserController::class, '
 //Servers 
 Route::resource('servers', '\App\Http\Controllers\ServerController');
 
+//Sites 
+Route::resource('sites', '\App\Http\Controllers\SiteController');
+Route::get('sites/index/${id}', [App\Http\Controllers\SiteController::class, 'indexByServer'])->name('indexByServer');
+Route::get('sites/create/${id}', [App\Http\Controllers\SiteController::class, 'createByServer'])->name('createByServer');
+
 //Login  
 Route::get('login', [App\Http\Controllers\LoginController::class, 'login'])->name('login');
 Route::post('login/authenticate', [App\Http\Controllers\LoginController::class, 'authenticate'])->name('login.authenticate');
