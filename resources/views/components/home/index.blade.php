@@ -2,6 +2,9 @@
     <div>
         Olá {{ Auth::user()->name }}
     </div>
+    <ul>
+        <li><a href="{{ route('servers.index') }}">Servidores</a></li>
+    </ul>
     <div>
         <button>
             <a id="logoutButton" class="dropdown-item" href="{{ route('logout') }}" data-cy="logoutBtn" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

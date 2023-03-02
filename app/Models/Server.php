@@ -9,7 +9,7 @@ class Server extends Model
 {
     use HasFactory;
 
-    protected $table = 'verify_emails';
+    protected $table = 'servers';
 
     protected $fillable = [
         'name',

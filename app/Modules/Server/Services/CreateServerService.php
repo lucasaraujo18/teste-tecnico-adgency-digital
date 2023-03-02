@@ -7,7 +7,6 @@ use App\Models\Server;
 use App\Modules\User\Repositories\GetUserRepository;
 use App\Validators\ServerValidators;
 
-
 class CreateServerService {
 
     protected $server;
@@ -57,7 +56,7 @@ class CreateServerService {
 
             Log::warning("Ops:" . $error);
 
-            return $errsor;
+            return $error;
         }
     }
 

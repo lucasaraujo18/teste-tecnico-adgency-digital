@@ -3,6 +3,9 @@ namespace App\Modules\Server\Services;
 
 use App\Models\Server;
 
+use Illuminate\Support\Facades\Auth;
+
+
 use App\Modules\User\Repositories\GetUserRepository;
 
 class ListServerService {
@@ -23,7 +26,7 @@ class ListServerService {
 
         $servers = $this->server->where('user_id', $userId)->get();
 
-        return view('components.server.index', compact('user', 'servers'));
+        return view('components.servers.index', compact('user', 'servers'));
     }
 
 }
