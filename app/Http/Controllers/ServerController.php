@@ -40,7 +40,8 @@ class ServerController extends Controller
      */
     public function create()
     {
-        //
+        $response = $this->createServerService->createServer();
+        return $response;
     }
 
     /**

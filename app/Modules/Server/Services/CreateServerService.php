@@ -4,11 +4,15 @@ namespace App\Modules\Server\Services;
 
 use App\Models\Server;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
 use App\Modules\User\Repositories\GetUserRepository;
 use App\Validators\ServerValidators;
 
-class CreateServerService {
 
+class CreateServerService {
     protected $server;
     protected $getUserRepository;
     protected $serverValidator;
@@ -23,7 +27,7 @@ class CreateServerService {
 
     public function createServer() 
     {
-        return view('components.server.operations.create');
+        return view('components.servers.create');
     }
 
     public function storeServer($request) {
@@ -44,12 +48,12 @@ class CreateServerService {
 
         DB::beginTransaction();
         
-        try {           
-            $server = $this->server->create($payload);   
+        try {     
+            $this->server->create($payload);   
 
             DB::commit();
 
-            return redirect()->route('server.index');
+            return redirect('servers');
 
         } catch (\Throwable $error) {
             DB::rollback();

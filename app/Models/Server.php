@@ -14,5 +14,6 @@ class Server extends Model
     protected $fillable = [
         'name',
         'ip',
+        'user_id'
     ];
 }

@@ -5,7 +5,6 @@ use App\Models\Server;
 
 use Illuminate\Support\Facades\Auth;
 
-
 use App\Modules\User\Repositories\GetUserRepository;
 
 class ListServerService {
