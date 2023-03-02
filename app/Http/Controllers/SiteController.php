@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Modules\Site\Services\CreateSiteService;
 use App\Modules\Site\Services\ListSiteService;
+use App\Modules\Site\Services\DeletesSiteService;
 
 class SiteController extends Controller
 {
@@ -15,11 +16,15 @@ class SiteController extends Controller
     protected $createSiteService;
     protected $listSiteService;
 
-    public function __construct(Site $site, CreateSiteService $createSiteService, ListSiteService $listSiteService)
+    public function __construct(Site $site, 
+                                CreateSiteService $createSiteService, 
+                                ListSiteService $listSiteService,
+                                DeleteSiteService $deleteSiteService)
     {
         $this->site = $site;
         $this->createSiteService = $createSiteService;
         $this->listSiteService = $listSiteService;
+        $this->deleteSiteService = $deleteSiteService;
     }
     /**
      * Display a listing of the resource.
@@ -97,6 +102,7 @@ class SiteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $response = $this->deleteSiteService->deleteSite($id);
+        return $response;
     }
 }

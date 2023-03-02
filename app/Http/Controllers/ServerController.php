@@ -28,7 +28,7 @@ class ServerController extends Controller
      */
     public function index(Request $request)
     {
-        $response = $this->listServerService->ListServer($request);
+        $response = $this->listServerService->listServer($request);
         return $response;
     }
 
