@@ -22,7 +22,7 @@ class CreateSiteService {
 
     public function createSite($serverId) 
     {
-        return view('components.site.create', ['server' => $serverId]);
+        return view('components.sites.create', ['server' => $serverId]);
     }
 
     public function storeSite($request) {
@@ -45,7 +45,7 @@ class CreateSiteService {
 
             DB::commit();
 
-            return redirect()->route('site.index');
+            return redirect('servers');
 
         } catch (\Throwable $error) {
             DB::rollback();

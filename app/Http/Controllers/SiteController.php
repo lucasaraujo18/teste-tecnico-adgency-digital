@@ -51,7 +51,7 @@ class SiteController extends Controller
      */
     public function store(Request $request)
     {
-        $response = $this->createSiteService->storeSite($id);
+        $response = $this->createSiteService->storeSite($request);
         return $response;
     }
 

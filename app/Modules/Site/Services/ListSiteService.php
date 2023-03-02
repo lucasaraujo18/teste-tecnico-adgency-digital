@@ -16,7 +16,7 @@ class ListSiteService {
     {
         $sites = $this->site->where('server_id', $serverId)->get();
 
-        return view('components.site.index', compact('user', 'sites'), ['server' => $serverId]);
+        return view('components.sites.index', compact('sites'), ['server' => $serverId]);
     }
 
 }

@@ -7,12 +7,14 @@
         <thead>
             <th>Nome</th>
             <th>Endereço</th>
+            <th>Ações</th>
         </thead>
         <tbody>
             @foreach ($servers as $server)
                 <tr>
                     <td>{{ $server->name }}</td>
                     <td>{{ $server->ip }} </td>
+                    <td><button><a href="{{ url('sites/index/' . $server->id) }}">Sites</a></button>
                 </tr>
             @endforeach
         </tbody>

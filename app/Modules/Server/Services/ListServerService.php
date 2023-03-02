@@ -18,7 +18,7 @@ class ListServerService {
         $this->getUserRepository = $getUserRepository;
     }
 
-    public function ListServer($request)
+    public function listServer($request)
     {
         $user = $this->getUserRepository->findUserById((Auth::id()));
         $userId = $user->id;

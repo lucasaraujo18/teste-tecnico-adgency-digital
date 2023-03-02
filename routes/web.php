@@ -28,8 +28,8 @@ Route::resource('servers', '\App\Http\Controllers\ServerController');
 
 //Sites 
 Route::resource('sites', '\App\Http\Controllers\SiteController');
-Route::get('sites/index/${id}', [App\Http\Controllers\SiteController::class, 'indexByServer'])->name('indexByServer');
-Route::get('sites/create/${id}', [App\Http\Controllers\SiteController::class, 'createByServer'])->name('createByServer');
+Route::get('sites/index/{id}', [App\Http\Controllers\SiteController::class, 'indexByServer'])->name('indexByServer');
+Route::get('sites/create/{id}', [App\Http\Controllers\SiteController::class, 'createByServer'])->name('createByServer');
 
 //Login  
 Route::get('login', [App\Http\Controllers\LoginController::class, 'login'])->name('login');
