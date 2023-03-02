@@ -24,4 +24,9 @@ class GitHubController extends Controller
         $response = $this->gitHubService->gitCallBack();
         return $response;
     }
+
+    public function gitUserRepo() {
+        $response = $this->gitHubService->gitUserRepo();
+        return $response;
+    }
 }

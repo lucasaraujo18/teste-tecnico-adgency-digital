@@ -26,6 +26,9 @@ class User extends Authenticatable
         'privacy_terms',
         'github_id',
         'auth_type',
+        'github_username',
+        'avatar',
+        'github_token'
     ];
 
     /**

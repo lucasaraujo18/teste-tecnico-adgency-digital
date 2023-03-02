@@ -32,11 +32,13 @@ class GitHubService {
                 return redirect('home');
 
             } else { 
-
-                $gitUser = User::create([
+                $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
                     'github_id'=> $user->id,
+                    'github_username' => $user->nickname,
+                    'avatar' => $user->avatar,
+                    'github_token' => $user->token,
                     'auth_type'=> 'github',
                     'password' => encrypt('gitpwd059'),
                     'git_hub_connect' => 1,
@@ -47,7 +49,7 @@ class GitHubService {
 
                 DB::commit();
      
-                Auth::login($gitUser);
+                Auth::login($newUser);
       
                 return redirect('home');
             }
@@ -59,6 +61,17 @@ class GitHubService {
 
             return $error;
         }
+    }
+
+
+    public function gitUserRepo() 
+    {
+        $reponse = Http::get('https://api.github.com/user/repos');
+
+        $reponseJson = $reponse->json();
+
+        dd($reponseJson);
+
     }
 
 }

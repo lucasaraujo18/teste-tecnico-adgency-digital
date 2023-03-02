@@ -42,3 +42,4 @@ Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name(
 //GitHub
 Route::get('auth/github', [App\Http\Controllers\GitHubController::class, 'gitRedirect']);
 Route::get('auth/github/callback', [App\Http\Controllers\GitHubController::class, 'gitCallback']);
+Route::get('github/gitRepos', [App\Http\Controllers\GitHubController::class, 'gitUserRepo'])->name('gitUserRepo');
