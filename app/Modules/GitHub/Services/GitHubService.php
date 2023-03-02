@@ -6,12 +6,21 @@ use App\Models\User;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 use Socialite;
-use Auth;
 use Carbon\Carbon;
 
+use App\Modules\GitHub\Repositories\GitHubApiRepository;
+
 class GitHubService {
+    protected $gitHubApiRepository;
+
+    public function __construct(GitHubApiRepository $gitHubApiRepository)
+    {
+        $this->gitHubApiRepository = $gitHubApiRepository;
+    }
+
     public function gitRedirect()
     {
         return Socialite::driver('github')->redirect();
@@ -66,11 +75,15 @@ class GitHubService {
 
     public function gitUserRepo() 
     {
-        $reponse = Http::get('https://api.github.com/user/repos');
+        $githubApi = $this->gitHubApiRepository->gitHubApi();
+        $url = $githubApi['apiUrl'];
+        $headers = $githubApi['headers'];
 
-        $reponseJson = $reponse->json();
+        $reponse = Http::withHeaders($headers)->get($url . '/user/repos');
 
-        dd($reponseJson);
+        $repositories = $reponse->json();
+
+        return $repositories;
 
     }
 
