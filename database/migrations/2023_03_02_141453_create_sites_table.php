@@ -18,8 +18,8 @@ class CreateSitesTable extends Migration
             $table->string('name');
             $table->text('url');
             $table->unsignedBigInteger('server_id');
-            $table->text('deployment_url');
-            $table->text('repository');
+            $table->text('deployment_url')->nullable();
+            $table->text('repository')->nullable();
             $table->timestamps();
 
             $table->foreign('server_id')->references('id')->on('servers')->onDelete('cascade');
