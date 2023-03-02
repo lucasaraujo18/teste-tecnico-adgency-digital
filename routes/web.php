@@ -31,3 +31,7 @@ Route::post('logout', [App\Http\Controllers\LoginController::class, 'logout'])->
 
 // Home 
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Git Hub
+Route::get('auth/github', [App\Http\Controllers\GitHubController::class, 'gitRedirect']);
+Route::get('auth/github/callback', [App\Http\Controllers\GitHubController::class, 'gitCallback']);
