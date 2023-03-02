@@ -8,3 +8,5 @@
     <tbody>
     </tbody>
 </table>
+
+<script src="{{ asset('js/gitHubApi.js') }}"></script>

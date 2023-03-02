@@ -21,6 +21,10 @@ class GitHubService {
         $this->gitHubApiRepository = $gitHubApiRepository;
     }
 
+    public function listRepositories() {
+        return view('components.github.index');
+    }
+
     public function gitRedirect()
     {
         return Socialite::driver('github')->redirect();

@@ -40,7 +40,7 @@ Route::post('logout', [App\Http\Controllers\LoginController::class, 'logout'])->
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //GitHub
+Route::resource('github', '\App\Http\Controllers\GitHubController');
 Route::get('auth/github', [App\Http\Controllers\GitHubController::class, 'gitRedirect']);
 Route::get('auth/github/callback', [App\Http\Controllers\GitHubController::class, 'gitCallback']);
-
 Route::get('github/gitRepos', [App\Http\Controllers\GitHubController::class, 'gitUserRepo'])->name('gitUserRepo');

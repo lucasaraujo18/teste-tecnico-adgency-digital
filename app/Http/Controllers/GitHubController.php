@@ -10,9 +10,15 @@ class GitHubController extends Controller
 {
     protected $gitHubService;
 
+    
     public function __construct(GitHubService $gitHubService)
     {       
         $this->gitHubService = $gitHubService;
+    }
+
+    public function index() {
+        $response = $this->gitHubService->listRepositories();
+        return $response;
     }
 
     public function gitRedirect() {
