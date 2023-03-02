@@ -10,10 +10,17 @@
             <th>Ações</th>
         </thead>
         <tbody>
-            @foreach ($sites as $sites)
+            @foreach ($sites as $site)
                 <tr>
-                    <td>{{ $sites->name }}</td>
-                    <td>{{ $sites->url }} </td>
+                    <td>{{ $site->name }}</td>
+                    <td>{{ $site->url }} </td>
+                    <td>
+                        <form action="{{ route('sites.destroy', $site->id) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit">Deletar</button>
+                        </form> 
+                    </td>
                 </tr>
             @endforeach
         </tbody>

@@ -23,13 +23,15 @@ class DeleteSiteService {
     public function deleteSite($id) 
     {
         $deleteSite = $this->getSiteRepository->findSiteById($id);
+        
+        DB::beginTransaction();
 
         try {           
-            $site = $this->site->delete($deleteSite);   
+            $site = $this->site->where('id', $deleteSite->id)->delete();   
 
             DB::commit();
 
-            return redirect('servers');
+            return redirect()->back();
 
         } catch (\Throwable $error) {
             DB::rollback();

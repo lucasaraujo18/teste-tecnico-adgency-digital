@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Modules\Site\Services\CreateSiteService;
 use App\Modules\Site\Services\ListSiteService;
-use App\Modules\Site\Services\DeletesSiteService;
+use App\Modules\Site\Services\DeleteSiteService;
 
 class SiteController extends Controller
 {
