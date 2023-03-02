@@ -19,10 +19,17 @@ Route::get('/', function () {
     return Redirect::route('login');
 });
 
-// Route for users 
+//Users 
 Route::resource('users', '\App\Http\Controllers\UserController');
 Route::post('user/confirm-email', [App\Http\Controllers\UserController::class, 'verifyAccount'])->name('user.verifyCode');
 
+//Servers 
+Route::resource('servers', '\App\Http\Controllers\ServerController');
+
+//Sites 
+Route::resource('sites', '\App\Http\Controllers\SiteController');
+Route::get('sites/index/{id}', [App\Http\Controllers\SiteController::class, 'indexByServer'])->name('indexByServer');
+Route::get('sites/create/{id}', [App\Http\Controllers\SiteController::class, 'createByServer'])->name('createByServer');
 
 //Login  
 Route::get('login', [App\Http\Controllers\LoginController::class, 'login'])->name('login');
@@ -32,6 +39,6 @@ Route::post('logout', [App\Http\Controllers\LoginController::class, 'logout'])->
 // Home 
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Git Hub
+//GitHub
 Route::get('auth/github', [App\Http\Controllers\GitHubController::class, 'gitRedirect']);
 Route::get('auth/github/callback', [App\Http\Controllers\GitHubController::class, 'gitCallback']);
