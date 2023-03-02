@@ -14,7 +14,13 @@
                 <tr>
                     <td>{{ $server->name }}</td>
                     <td>{{ $server->ip }} </td>
-                    <td><button><a href="{{ url('sites/index/' . $server->id) }}">Sites</a></button>
+                    <td>
+                        <button><a href="{{ url('sites/index/' . $server->id) }}">Sites</a></button>
+                        <form action="{{ route('servers.destroy', $server->id) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit">Deletar</button>
+                        </form> 
                 </tr>
             @endforeach
         </tbody>

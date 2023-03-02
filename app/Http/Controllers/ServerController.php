@@ -20,12 +20,12 @@ class ServerController extends Controller
     public function __construct(Server $server, 
                                 CreateServerService $createServerService, 
                                 ListServerService $listServerService,
-                                DeleteSiteService $deleteSiteService)
+                                DeleteServerService $deleteServerService)
     {
         $this->server = $server;
         $this->createServerService = $createServerService;
         $this->listServerService = $listServerService;
-        $this->deleteSiteService = $deleteSiteService;
+        $this->deleteServerService = $deleteServerService;
     }
     /**
      * Display a listing of the resource.
@@ -103,7 +103,7 @@ class ServerController extends Controller
      */
     public function destroy($id)
     {
-        $response = $this->deleteSiteService->deleteSite($id);
+        $response = $this->deleteServerService->deleteServer($id);
         return $response;
     }
 }
