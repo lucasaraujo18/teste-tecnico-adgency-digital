@@ -1,11 +1,9 @@
 @extends('components.templates.main-component')
 @section('content')
-    <h1>Seus servidores</h1>
-
-    <button><a href="{{ route('servers.create') }}">Criar servidor</a></button>
+    <button class="button-create"><a href="{{ route('servers.create') }}">Criar servidor</a></button>
 
     @if (count($servers) > 0)
-        <table>
+        <table class="table table-bordered">
             <thead>
                 <th>Nome</th>
                 <th>Endereço</th>
@@ -16,12 +14,12 @@
                     <tr>
                         <td>{{ $server->name }}</td>
                         <td>{{ $server->ip }} </td>
-                        <td>
-                            <button><a href="{{ url('sites/index/' . $server->id) }}">Sites</a></button>
+                        <td class="action-table-buttons">
+                            <button class="specific"><a href="{{ url('sites/index/' . $server->id) }}">Sites</a></button>
                             <form action="{{ route('servers.destroy', $server->id) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <button type="submit">Deletar</button>
+                                <button class="delete" type="submit">Deletar</button>
                             </form> 
                         </td>
                     </tr>
