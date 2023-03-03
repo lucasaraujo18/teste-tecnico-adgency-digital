@@ -1,6 +1,3 @@
-<head>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>    
 <div class="card">
     <div class="card-header">
         <h5 class="card-title">Card title</h5>
