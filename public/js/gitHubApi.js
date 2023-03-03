@@ -3,20 +3,18 @@ $(document).ready(function () {
 });
 
 async function showRepositories() {
-    const options = {
-        method: 'GET'
-    };
-
-    await fetch('github/gitRepos', options)
-        .then(response => response.json())
-        .then(gitRepositories => {
-            gitRepositories.map((gitRepository) => {
+    $.ajax({
+        type: "GET",
+        url: "github/gitRepos",
+        success: function (response) {
+            response.map((data) => {
                 $('table tbody').append(
                     `<tr>
-                        <td>${gitRepository.fullname}</td>
-                        <td>${gitRepository.url}
+                        <td>${data.full_name}</td>
+                        <td>${data.url}
                     </tr>`
                 );
             })
-        })
+        }
+    });
 }
