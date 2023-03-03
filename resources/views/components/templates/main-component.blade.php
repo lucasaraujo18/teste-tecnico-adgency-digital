@@ -2,7 +2,7 @@
 
 <body>
     <div>
-        @include('components.templates.navbar.component')
+        @include('components.templates.navbar-component')
     </div>
 
     <div>
