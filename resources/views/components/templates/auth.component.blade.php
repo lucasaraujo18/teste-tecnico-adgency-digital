@@ -4,7 +4,7 @@
     <div>
         <div>
             <main>
-                @yield('content')
+                @yield('auth-content')
             </main>
         </div>
     </div>
