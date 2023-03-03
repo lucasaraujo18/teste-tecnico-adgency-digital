@@ -22,7 +22,7 @@ class CreateSiteService {
 
     public function createSite($serverId) 
     {
-        return view('components.sites.create', ['server' => $serverId]);
+        return view('modules.sites.create', ['server' => $serverId]);
     }
 
     public function storeSite($request) {

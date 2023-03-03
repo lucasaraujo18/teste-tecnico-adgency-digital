@@ -25,7 +25,7 @@ class ListServerService {
 
         $servers = $this->server->where('user_id', $userId)->get();
 
-        return view('components.servers.index', compact('user', 'servers'));
+        return view('modules.servers.index', compact('user', 'servers'));
     }
 
 }
