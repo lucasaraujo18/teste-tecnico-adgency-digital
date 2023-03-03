@@ -1,0 +1,52 @@
+.form_template {
+    padding: 1rem 10rem;
+}
+
+.form-title {
+    color: var(--background-color);
+    text-align: center;
+    font-size: var(--font-size-title44);
+    font-weight: bold;
+}
+
+label {
+    color: var(--background-color);
+}
+
+.form-button {
+    width: 100%;
+    color: var(--white-color);
+    font-size: var(--font-size-title32);
+    font-weight: bold;
+    border-radius: 3px;
+    margin: 10px 0px;
+    transition: all 0.5s ease;
+}
+
+.form-button.form-button-primary {
+    background-color: var(--background-color);
+}
+
+.form-button.form-button-git {
+    background-color: var(--git-hub-color);
+}
+
+.form-button.form-button-primary:hover {
+    background-color: var(--white-color);
+    color: var(--background-color);
+    border-color: var(--background-color);
+}
+
+.form-button.form-button-git:hover {
+    background-color: var(--white-color);
+    color: var(--git-hub-color);
+    border-color: var(--git-hub-color);
+}
+
+.form-button i {
+    margin-left: 5px;
+}
+
+.form-control:focus {
+    border-color: var(--background-color) !important;
+}
