@@ -1,6 +1,6 @@
 @include('components.default.head')
 
-<body>
+<body class="main_background">
     <div>
         @include('components.templates.navbar-component')
     </div>

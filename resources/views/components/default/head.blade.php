@@ -20,6 +20,7 @@
 
         {{-- Styles --}}
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
         <title>Deployer service</title>
     </head>
