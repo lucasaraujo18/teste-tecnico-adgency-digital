@@ -1,7 +1,6 @@
 @extends('components.templates.main-component')
 @section('content')
-    <h1>Seus Repositórios</h1>
-    <table>
+    <table class="table table-bordered">
         <thead>
             <th>Repositório</th>
             <th>URL</th>

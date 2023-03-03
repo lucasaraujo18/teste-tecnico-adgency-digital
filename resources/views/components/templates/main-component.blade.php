@@ -1,15 +1,14 @@
 @include('components.default.head')
 
-<body>
+<body class="main_background">
     <div>
         @include('components.templates.navbar-component')
     </div>
-
-    <div>
-        <div>
-            <main>
-                @yield('content')
-            </main>
-        </div>
+    
+    <div class="main-content">
+        <main>
+            @yield('content')
+        </main>
     </div>
 </body>
+</html>

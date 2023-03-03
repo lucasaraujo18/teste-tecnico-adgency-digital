@@ -1,0 +1,19 @@
+:root {
+    --font-size-title44: 2.75rem;
+    --font-size-title32: 2.25rem;
+    --font-size-title18: 1.125rem;
+    --font-size-title15: 0.938rem;
+    --font-size-title16: 1rem;
+    --font-size-title14: 0.875rem;
+    --font-size-title13: 0.813rem;
+    --font-size-title12: 0.75rem;
+    --font-size-title11: 0.688rem;
+    --font-size-title10: 0.625rem;
+    --font-size-title8: 0.5rem;
+    --font-size-title20: 1.25rem;
+    --font-size-title30: 1.75rem;
+    --background-color: #0a7c71;
+    --white-color: #ffffff;
+    --git-hub-color: #313131;
+    --delete-color: #dc3545;
+}
