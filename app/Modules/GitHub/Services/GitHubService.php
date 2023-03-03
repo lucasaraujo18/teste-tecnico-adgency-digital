@@ -6,12 +6,25 @@ use App\Models\User;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 use Socialite;
-use Auth;
 use Carbon\Carbon;
 
+use App\Modules\GitHub\Repositories\GitHubApiRepository;
+
 class GitHubService {
+    protected $gitHubApiRepository;
+
+    public function __construct(GitHubApiRepository $gitHubApiRepository)
+    {
+        $this->gitHubApiRepository = $gitHubApiRepository;
+    }
+
+    public function listRepositories() {
+        return view('components.github.index');
+    }
+
     public function gitRedirect()
     {
         return Socialite::driver('github')->redirect();
@@ -32,11 +45,13 @@ class GitHubService {
                 return redirect('home');
 
             } else { 
-
-                $gitUser = User::create([
+                $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
                     'github_id'=> $user->id,
+                    'github_username' => $user->nickname,
+                    'avatar' => $user->avatar,
+                    'github_token' => $user->token,
                     'auth_type'=> 'github',
                     'password' => encrypt('gitpwd059'),
                     'git_hub_connect' => 1,
@@ -47,7 +62,7 @@ class GitHubService {
 
                 DB::commit();
      
-                Auth::login($gitUser);
+                Auth::login($newUser);
       
                 return redirect('home');
             }
@@ -59,6 +74,21 @@ class GitHubService {
 
             return $error;
         }
+    }
+
+
+    public function gitUserRepo() 
+    {
+        $gitHubApi = $this->gitHubApiRepository->gitHubApi();
+        $url = $gitHubApi['apiUrl'];
+        $headers = $gitHubApi['headers'];
+
+        $reponse = Http::withHeaders($headers)->get($url . '/user/repos');
+
+        $gitRepositories = $reponse->json();
+
+        return $gitRepositories;
+
     }
 
 }

@@ -10,9 +10,15 @@ class GitHubController extends Controller
 {
     protected $gitHubService;
 
+    
     public function __construct(GitHubService $gitHubService)
     {       
         $this->gitHubService = $gitHubService;
+    }
+
+    public function index() {
+        $response = $this->gitHubService->listRepositories();
+        return $response;
     }
 
     public function gitRedirect() {
@@ -22,6 +28,11 @@ class GitHubController extends Controller
 
     public function gitCallBack() {
         $response = $this->gitHubService->gitCallBack();
+        return $response;
+    }
+
+    public function gitUserRepo() {
+        $response = $this->gitHubService->gitUserRepo();
         return $response;
     }
 }
