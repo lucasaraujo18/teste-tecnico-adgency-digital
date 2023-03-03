@@ -1,3 +1,14 @@
 .main_background {
     background-color: var(--background-color);
+    background-image: linear-gradient(to bottom right, var(--background-color), black);
+    height: 100vh;
+}
+
+.main-content {
+    background-color: var(--white-color);
+    margin: 10% auto;
+    width: 50%;
+    height: fit-content;
+    border-radius: 4px;
+    padding: 10px;
 }
