@@ -21,6 +21,6 @@
         {{-- Styles --}}
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-        <title>Laravel</title>
+        <title>Deployer service</title>
     </head>
 

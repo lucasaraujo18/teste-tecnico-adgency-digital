@@ -1,4 +1,5 @@
-@include('components.header.header.component')
+@include('components.default.head')
+
 <body>
     <div>
         @include('components.templates.navbar.component')

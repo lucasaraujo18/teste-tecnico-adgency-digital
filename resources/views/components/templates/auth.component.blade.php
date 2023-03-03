@@ -1,4 +1,5 @@
-@include('components.header.header.component')
+@include('components.default.head')
+
 <body>
     <div>
         <div>
