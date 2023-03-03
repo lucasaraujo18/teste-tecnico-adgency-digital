@@ -1,5 +1,5 @@
 @extends('components.templates.auth-component')
-@section('content')    
+@section('auth-content')    
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">Card title</h5>
