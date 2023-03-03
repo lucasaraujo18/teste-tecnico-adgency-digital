@@ -1,4 +1,3 @@
-@include('components.header.header.component')
 <div>
     <ul>
         <li><a href="{{ route('servers.index') }}">Servidores</a></li>
