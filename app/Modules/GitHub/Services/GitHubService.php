@@ -22,7 +22,7 @@ class GitHubService {
     }
 
     public function listRepositories() {
-        return view('components.github.index');
+        return view('modules.github.index');
     }
 
     public function gitRedirect()

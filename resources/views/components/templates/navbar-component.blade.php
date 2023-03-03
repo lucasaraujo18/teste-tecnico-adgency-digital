@@ -1,7 +1,4 @@
-
-    <div>
-        Olá {{ Auth::user()->name }}
-    </div>
+<div>
     <ul>
         <li><a href="{{ route('servers.index') }}">Servidores</a></li>
         <li><a href="{{ route('github.index') }}">Repositórios</a></li>
@@ -17,3 +14,4 @@
             <input id="token-logout" name="token" class="d-none" type="hidden">
         </form>
     </div>
+</div>

@@ -27,7 +27,7 @@ class CreateServerService {
 
     public function createServer() 
     {
-        return view('components.servers.create');
+        return view('modules.servers.create');
     }
 
     public function storeServer($request) {
