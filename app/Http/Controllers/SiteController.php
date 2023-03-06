@@ -31,10 +31,9 @@ class SiteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexByServer($id)
+    public function indexByServer()
     {
-        $response = $this->listSiteService->viewListSite($id);
-        return $response;
+        //
     }
 
     /**

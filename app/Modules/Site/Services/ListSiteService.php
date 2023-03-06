@@ -11,19 +11,16 @@ class ListSiteService {
     {
         $this->site = $site;
     }
-
-    public function viewListSite($serverId)
-    {
-        $sites = $this->site->where('server_id', $serverId)->get();
-
-        return view('modules.sites.index', compact('sites'), ['server' => $serverId]);
-    }
-
-    public function deployListSite($serverId)
+    
+    public function listSite($serverId)
     {
         $sites = $this->site->where('server_id', $serverId)->get();
         
-        return response()->json($sites, 200);
+        if ($request->hasHeader('Content-Type')) { 
+            return response()->json($sites, 200);
+        } else {
+            return view('modules.sites.index', compact('sites'), ['server' => $serverId]);
+        }
     }
 
 }
