@@ -18,6 +18,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/webhook', [App\Http\Controllers\WebHookController::class, 'webhook'])->name('webhook');
+//WebHook
+Route::middleware('throttle:60,1')->group(function () {
+    Route::post('/webhook', [App\Http\Controllers\WebHookController::class, 'webhook'])->name('webhook');
+});
+
 Route::get('/servers/{server_id}/sites', [App\Http\Controllers\ServerController::class, 'deployListSite'])->name('severs-sites');
 
+// Emulate return
+Route::post('/deploy-url', function (Request $request) {
+    return response()->json(['sucess' => 'deploy done'], 200);
+})->name('deploy');

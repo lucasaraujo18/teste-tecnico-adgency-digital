@@ -30,7 +30,7 @@ class CreateSiteService {
             'name' => $request->name,
             'url' => $request->url, 
             'server_id' => $request->server_id,
-            'deployment_url' => $request->url
+            'deployment_url' => 'http://localhost:8000/api/deploy-url'
         ];
 
         $validation = $this->siteValidator->createSiteValidator($payload);

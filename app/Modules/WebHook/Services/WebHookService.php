@@ -10,8 +10,9 @@ class WebHookService {
 
     public function webHook($request)
     {
+        dd($request->all());
         try {
-            $response = Http::get('http://localhost:8000/servers/' .$request->data['server'] . '/sites');
+            $response = Http::get('http://localhost:8000/servers/' . $request->data['server'] . '/sites');
 
             $response->throw();
             $response = json_decode($response->body());
@@ -32,13 +33,16 @@ class WebHookService {
         foreach ($sites as $key => $site) { 
             if ($request->data['site'] == $site->url) { 
                 try {
-                        $url = 'http://localhost:8000/api/' . $site->deployment_url;
+                        $url = $site->deployment_url;
+
                         $responseDeploy = Http::post($url, [
                             'deploy' => 'deploy',
                         ]);
+
                         $responseDeploy->throw();
                         #if success
                         $responseDeploy = json_decode($responseDeploy->body());
+
                         if($responseDeploy->sucess){
                             dump("email sent to users sucessfully");
                             #send email for clients
