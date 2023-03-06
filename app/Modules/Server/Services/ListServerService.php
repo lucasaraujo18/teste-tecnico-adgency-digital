@@ -20,12 +20,13 @@ class ListServerService {
 
     public function listServer($request)
     {
-        $user = $this->getUserRepository->findUserById((Auth::id()));
-        $userId = $user->id;
+        $servers = $this->server->all();
 
-        $servers = $this->server->where('user_id', $userId)->get();
+        if ($request->hasHeader('Content-Type')) {
+            return response()->json($servers, 200);
+        } else {
+            return view('modules.servers.index', compact('servers'));
+        }
 
-        return view('modules.servers.index', compact('user', 'servers'));
     }
-
 }

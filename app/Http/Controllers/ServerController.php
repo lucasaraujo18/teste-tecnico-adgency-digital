@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Modules\Server\Services\CreateServerService;
 use App\Modules\Server\Services\ListServerService;
+use App\Modules\Site\Services\ListSiteService;
 use App\Modules\Server\Services\DeleteServerService;
 
 class ServerController extends Controller
@@ -20,11 +21,13 @@ class ServerController extends Controller
     public function __construct(Server $server, 
                                 CreateServerService $createServerService, 
                                 ListServerService $listServerService,
+                                ListSiteService $listSiteService,
                                 DeleteServerService $deleteServerService)
     {
         $this->server = $server;
         $this->createServerService = $createServerService;
         $this->listServerService = $listServerService;
+        $this->listSiteService = $listSiteService;
         $this->deleteServerService = $deleteServerService;
     }
     /**
@@ -104,6 +107,12 @@ class ServerController extends Controller
     public function destroy($id)
     {
         $response = $this->deleteServerService->deleteServer($id);
+        return $response;
+    }
+
+    public function deployListSite($id)
+    {
+        $response = $this->listSiteService->deployListSite($id);
         return $response;
     }
 }
