@@ -18,6 +18,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/webhook', [App\Http\Controllers\WebhookController::class, 'handle'])->name('webhook');
+Route::post('/webhook', [App\Http\Controllers\WebHookController::class, 'webhook'])->name('webhook');
 Route::get('/servers/{server_id}/sites', [App\Http\Controllers\ServerController::class, 'deployListSite'])->name('severs-sites');
 

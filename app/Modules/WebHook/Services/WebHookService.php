@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Modules\WebHook\Services;
+
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -29,7 +32,7 @@ class WebHookService {
         foreach ($sites as $key => $site) { 
             if ($request->data['site'] == $site->url) { 
                 try {
-                        $url = 'http://localhost:8001/api/' . $site->deployment_url;
+                        $url = 'http://localhost:8000/api/' . $site->deployment_url;
                         $responseDeploy = Http::post($url, [
                             'deploy' => 'deploy',
                         ]);

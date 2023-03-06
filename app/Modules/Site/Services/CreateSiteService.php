@@ -30,6 +30,7 @@ class CreateSiteService {
             'name' => $request->name,
             'url' => $request->url, 
             'server_id' => $request->server_id,
+            'deployment_url' => $request->url
         ];
 
         $validation = $this->siteValidator->createSiteValidator($payload);
