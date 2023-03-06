@@ -12,7 +12,7 @@ class ListSiteService {
         $this->site = $site;
     }
 
-    public function listSite($serverId)
+    public function viewListSite($serverId)
     {
         $sites = $this->site->where('server_id', $serverId)->get();
 
@@ -24,7 +24,6 @@ class ListSiteService {
         $sites = $this->site->where('server_id', $serverId)->get();
         
         return response()->json($sites, 200);
-        
     }
 
 }

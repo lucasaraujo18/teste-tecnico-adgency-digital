@@ -33,7 +33,7 @@ class SiteController extends Controller
      */
     public function indexByServer($id)
     {
-        $response = $this->listSiteService->listSite($id);
+        $response = $this->listSiteService->viewListSite($id);
         return $response;
     }
 
