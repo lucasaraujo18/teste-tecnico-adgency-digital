@@ -25,7 +25,7 @@ Route::post('user/confirm-email', [App\Http\Controllers\UserController::class, '
 
 //Servers 
 Route::resource('servers', '\App\Http\Controllers\ServerController');
-Route::get('/servers/{server_id}/sites', [App\Http\Controllers\ServerController::class, 'deployListSite'])->name('severs-sites');
+Route::get('/servers/{server_id}/sites', [App\Http\Controllers\ServerController::class, 'listSite'])->name('severs-sites');
 
 //Sites 
 Route::resource('sites', '\App\Http\Controllers\SiteController');

@@ -15,7 +15,7 @@
                         <td>{{ $server->name }}</td>
                         <td>{{ $server->ip }} </td>
                         <td class="action-table-buttons">
-                            <button class="specific"><a href="{{ url('sites/index/' . $server->id) }}">Sites</a></button>
+                            <button class="specific"><a href="{{ url('servers/' . $server->id . '/sites') }}">Sites</a></button>
                             <form action="{{ route('servers.destroy', $server->id) }}" method="POST">
                                 @method('DELETE')
                                 @csrf

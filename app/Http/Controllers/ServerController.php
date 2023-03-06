@@ -110,9 +110,9 @@ class ServerController extends Controller
         return $response;
     }
 
-    public function listSite($id)
+    public function listSite(Request $request, $id)
     {
-        $response = $this->listSiteService->listSite($id);
+        $response = $this->listSiteService->listSite($request, $id);
         return $response;
     }
 }
