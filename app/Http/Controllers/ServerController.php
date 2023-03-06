@@ -110,9 +110,9 @@ class ServerController extends Controller
         return $response;
     }
 
-    public function deployListSite($id)
+    public function listSite(Request $request, $id)
     {
-        $response = $this->listSiteService->deployListSite($id);
+        $response = $this->listSiteService->listSite($request, $id);
         return $response;
     }
 }
