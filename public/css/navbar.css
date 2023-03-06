@@ -39,13 +39,25 @@
     text-decoration: none !important;
 }
 
+.nav-bar-avatar {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
 .nav-bar-avatar img {
     border: 2px solid var(--white-color);
     border-radius: 50px;
     height: 45px;
     margin: 15px 10px;
     width: 50px;
-    cursor: pointer;
+}
+
+.nav-bar-avatar p {
+    color: var(--white-color);
+    font-size: 16px;
+    font-weight: 700;
+    padding: 0 15px 0 5px;
 }
 
 .nav-bar-menu {

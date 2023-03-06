@@ -4,23 +4,29 @@
         <li><a href="{{ route('github.index') }}">Repositórios</a></li>
     </ul>
     <div>
-        <div class="nav-bar-avatar">
-            <img src="{{ Auth::user()->avatar}}" alt="">
-        </div>
-        <div class="nav-bar-menu"> 
-            <div class="nav-bar-user-settings">
-                <p>Olá {{ Auth::user()->name }}</p>
-                <p>Editar Usuário</p>
-                <button>
-                    <a id="logoutButton" class="dropdown-item" href="{{ route('logout') }}" data-cy="logoutBtn" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <p class="dropdown-menu-text">Sair</p>
-                    </a>
-                </button>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                    <input id="token-logout" name="token" class="d-none" type="hidden">
-                </form>
+        @if (Auth::user()->auth_type == 'github')
+            <div class="nav-bar-avatar">
+                <img src="{{ Auth::user()->avatar}}" alt="">
+                <p>{{ Auth::user()->name}}</p>
+            </div>
+            @else
+                <div>
+                    <button>Conectar com o github</button>
+                </div>
+            @endif
+            <div class="nav-bar-menu"> 
+                <div class="nav-bar-user-settings">
+                    <p>Olá {{ Auth::user()->name }}</p>
+                    <button>
+                        <a id="logoutButton" class="dropdown-item" href="{{ route('logout') }}" data-cy="logoutBtn" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <p class="dropdown-menu-text">Sair</p>
+                        </a>
+                    </button>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                        <input id="token-logout" name="token" class="d-none" type="hidden">
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 </div>
