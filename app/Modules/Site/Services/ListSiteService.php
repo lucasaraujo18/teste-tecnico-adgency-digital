@@ -19,4 +19,12 @@ class ListSiteService {
         return view('modules.sites.index', compact('sites'), ['server' => $serverId]);
     }
 
+    public function deployListSite($serverId)
+    {
+        $sites = $this->site->where('server_id', $serverId)->get();
+        
+        return response()->json($sites, 200);
+        
+    }
+
 }
