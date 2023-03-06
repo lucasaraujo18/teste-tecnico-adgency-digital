@@ -71,7 +71,7 @@
     padding: 0 15px;
     border-radius: 5px;
     text-align: center;
-    visibility: hidden;
+    display: none;
 }
 
 .nav-bar-user-settings p {

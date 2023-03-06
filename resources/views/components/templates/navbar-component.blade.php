@@ -5,15 +5,10 @@
     </ul>
     <div>
         @if (Auth::user()->auth_type == 'github')
-            <div class="nav-bar-avatar">
+            <div class="nav-bar-avatar" onclick="navBarSettings()">
                 <img src="{{ Auth::user()->avatar}}" alt="">
                 <p>{{ Auth::user()->name}}</p>
             </div>
-            @else
-                <div>
-                    <button>Conectar com o github</button>
-                </div>
-            @endif
             <div class="nav-bar-menu"> 
                 <div class="nav-bar-user-settings">
                     <p>Olá {{ Auth::user()->name }}</p>
@@ -28,5 +23,11 @@
                     </form>
                 </div>
             </div>
-        </div>
+        @else
+            <div>
+                <button>Conectar com o github</button>
+            </div>
+         @endif
+    </div>
+    <script src="{{ asset('js/navBar.js') }}"></script>
 </div>
