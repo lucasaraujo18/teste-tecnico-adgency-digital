@@ -8,10 +8,20 @@
                 <div class="form-group">
                     <label for="name">Nome</label>
                     <input id="name" name="name" type="text" class="form-control" placeholder="Informe o nome" value="{{ old('name') }}">
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="ip">Endereço IP</label>
                     <input id="ip" name="ip" type="ip" class="form-control" placeholder="Informe o endereço de ip" value="{{ old('ip') }}">
+                    @error('ip')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
                 </div>
                 <button type="submit" class="btn form-button form-button-primary">Criar servidor</button>
             </form>

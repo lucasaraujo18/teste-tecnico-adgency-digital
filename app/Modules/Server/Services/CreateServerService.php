@@ -43,8 +43,8 @@ class CreateServerService {
         $validation = $this->serverValidator->createServerValidator($payload);
 
         if ($validation->fails()) {
-            return response()->json(['errors' => $validation->errors()], 403);
-        };
+            return back()->withErrors($validation)->withInput();
+        }
 
         DB::beginTransaction();
         

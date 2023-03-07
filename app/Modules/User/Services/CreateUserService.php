@@ -48,7 +48,7 @@ class CreateUserService
         $validation = $this->userValidator->createUserValidator($payload);
 
         if ($validation->fails()) {
-            return response()->json(['errors' => $validation->errors()], 403);
+            return back()->withErrors($validation)->withInput();
         };
 
         
