@@ -24,8 +24,8 @@
                 </div>
             </div>
         @else
-            <div>
-                <button>Conectar com o github</button>
+            <div class="connect-git">
+                <button> <i class="fab fa-github"></i> Conectar com o GitHub</button>
             </div>
          @endif
     </div>

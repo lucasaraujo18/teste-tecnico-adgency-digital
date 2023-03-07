@@ -83,3 +83,15 @@
     background-color: var(--white-color);
     border: none;
 }
+
+.connect-git {
+    margin: 25px 10px 0;
+}
+
+.connect-git button {
+    height: 40px;
+    background-color: var(--git-hub-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+}
