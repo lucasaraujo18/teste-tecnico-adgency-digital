@@ -12,3 +12,25 @@
     border-radius: 4px;
     padding: 10px;
 }
+
+.home-photo {
+    height: 125px;
+    width: 150px;
+    border-radius: 20px;
+    border: 3px solid var(--background-color);
+}
+
+.home_user_data {
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-list {
+    list-style: none;
+}
+
+.home-text,
+.home-list li {
+    font-size: 20px;
+    color: var(--background-color);
+}
