@@ -4,7 +4,6 @@
         <thead>
             <th>Repositório</th>
             <th>URL</th>
-            <th>Ações</th>
         </thead>
         <tbody>
         </tbody>
