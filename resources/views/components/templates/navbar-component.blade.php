@@ -25,7 +25,7 @@
             </div>
         @else
             <div class="connect-git">
-                <button> <i class="fab fa-github"></i> Conectar com o GitHub</button>
+                <a href="{{ url('auth/github') }}> <i class="fab fa-github"></i> Conectar com o GitHub</a>
             </div>
          @endif
     </div>
