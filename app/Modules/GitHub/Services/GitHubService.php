@@ -45,7 +45,9 @@ class GitHubService {
       
             $searchUser = User::where('github_id', $userGit->id)->first();
 
-            $user = $this->getUserRepository->findUserById((Auth::id()));
+            if (Auth::id()) {
+                $user = $this->getUserRepository->findUserById((Auth::id()));
+            }
 
             if ($searchUser) {
       
