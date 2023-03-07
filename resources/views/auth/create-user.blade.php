@@ -26,5 +26,6 @@
             </div>
             <button type="submit" class="btn form-button form-button-primary">Registrar</button>
         </form>
+        <a class="login-link" href="{{ url('/') }}">Voltar pra login</a>
     </div>
 @endsection

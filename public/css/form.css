@@ -50,3 +50,10 @@ label {
 .form-control:focus {
     border-color: var(--background-color) !important;
 }
+
+.login-link {
+    text-decoration: underline;
+    text-align: center;
+    position: relative;
+    left: 340px;
+}

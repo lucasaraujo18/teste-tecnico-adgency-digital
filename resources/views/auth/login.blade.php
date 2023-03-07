@@ -17,5 +17,6 @@
         <a class="btn form-button form-button-git" href="{{ url('auth/github') }}">
             Entrar com o GitHub  <i class="fab fa-github"></i>
         </a> 
+        <a class="login-link" href="{{ route('users.create') }}">Registrar-se</a>
     </div>
 @endsection

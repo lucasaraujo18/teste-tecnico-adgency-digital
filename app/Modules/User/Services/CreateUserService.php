@@ -41,7 +41,8 @@ class CreateUserService
             'email_verified' => false,
             'password' => $request->password,
             'password_confirmation' => $request->password_confirmation,
-            'privacy_terms' => $request->privacy_terms
+            'privacy_terms' => $request->privacy_terms, 
+            'auth_type' => 'normal'
         ];
         
         $validation = $this->userValidator->createUserValidator($payload);
