@@ -74,7 +74,7 @@ class VerifyEmailService
         $validation = Validator::make($request->all(), $rules, $messages);
 
         if ($validation->fails()) {
-            return response()->json(['errors' => $validation->errors()], 403);
+            return back()->withErrors($validation)->withInput();
         }
 
         $code = $this->verifyEmailsRepository->verifyByCode($verifyCode);      

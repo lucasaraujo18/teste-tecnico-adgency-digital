@@ -21,7 +21,7 @@ class GetUserRepository {
 
     public function findUserById($id)
     {
-        $user = $this->user->find($id);
+        $user = $this->user->findOrFail($id);
 
         return $user;
     }

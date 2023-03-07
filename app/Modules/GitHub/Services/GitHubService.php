@@ -2,6 +2,7 @@
 namespace App\Modules\GitHub\Services;
 
 use App\Models\User;
+use App\Models\Server;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
@@ -12,13 +13,20 @@ use Socialite;
 use Carbon\Carbon;
 
 use App\Modules\GitHub\Repositories\GitHubApiRepository;
+use App\Modules\User\Repositories\GetUserRepository;
 
 class GitHubService {
     protected $gitHubApiRepository;
+    protected $getUserRepository;
+    protected $server;
 
-    public function __construct(GitHubApiRepository $gitHubApiRepository)
+    public function __construct(GitHubApiRepository $gitHubApiRepository, 
+                                GetUserRepository $getUserRepository,
+                                Server $server)
     {
         $this->gitHubApiRepository = $gitHubApiRepository;
+        $this->getUserRepository = $getUserRepository;
+        $this->server = $server;
     }
 
     public function listRepositories() {
@@ -33,11 +41,14 @@ class GitHubService {
     public function gitCallback()
     {
         try {
-     
-            $user = Socialite::driver('github')->user();
+            $userGit = Socialite::driver('github')->user();
       
-            $searchUser = User::where('github_id', $user->id)->first();
-      
+            $searchUser = User::where('github_id', $userGit->id)->first();
+
+            if (Auth::id()) {
+                $user = $this->getUserRepository->findUserById((Auth::id()));
+            }
+
             if ($searchUser) {
       
                 Auth::login($searchUser);
@@ -46,12 +57,12 @@ class GitHubService {
 
             } else { 
                 $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'github_id'=> $user->id,
-                    'github_username' => $user->nickname,
-                    'avatar' => $user->avatar,
-                    'github_token' => $user->token,
+                    'name' => $userGit->name,
+                    'email' => $userGit->email,
+                    'github_id'=> $userGit->id,
+                    'github_username' => $userGit->nickname,
+                    'avatar' => $userGit->avatar,
+                    'github_token' => $userGit->token,
                     'auth_type'=> 'github',
                     'password' => encrypt('gitpwd059'),
                     'git_hub_connect' => 1,
@@ -59,7 +70,19 @@ class GitHubService {
                     'email_verified_at' => Carbon::now(),
                     'email_verified' => 1
                 ]);
+                if ($user) {
+                    $servers = $this->server->where('user_id', $user->id)->get();
 
+                    foreach ($servers as $server) {
+                        $server->user_id = $newUser->id;
+                        $server->save();
+                    }
+
+                    $user->delete();
+                    
+                    DB::commit();             
+                }
+                
                 DB::commit();
      
                 Auth::login($newUser);
